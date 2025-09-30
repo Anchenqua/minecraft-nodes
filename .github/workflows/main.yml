@@ -30,7 +30,7 @@ jobs:
           ./gradlew build
           
   BuildDynmap:
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -79,7 +79,7 @@ jobs:
 
 
   BuildPorts:
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
