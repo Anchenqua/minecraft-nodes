@@ -63,11 +63,6 @@ jobs:
           cd dynmap
           rustup target add wasm32-unknown-unknown
           cargo install -f --version 0.2.100 wasm-bindgen-cli
-
-
-      - name: Run wasm
-        run: |
-          cd dynmap
           npm run wasm
 
 
