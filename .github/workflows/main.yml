@@ -1,6 +1,104 @@
 name: 项目构建（Notes，Ports，Dynmap）
+
 on:
+  workflow_dispatch:
+
+jobs:
+  BuildNotes:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
 
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
 
 
+      - name: Change Permission
+        run:
+          sudo chmod -R 777 /home/runner
+
+
+      - name: Build Nodes
+        run: |
+          cd nodes
+          ./gradlew build
+          
+  BuildDynmap:
+    runs-on: ubuntu-lastest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm' 
+
+
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+          components: rustfmt, clippy
+
+
+      - name: npm install
+        run: |
+          cd dynmap
+          npm install
+
+
+      - name: Handle wasm
+        run: |
+          cd dynmap
+          rustup target add wasm32-unknown-unknown
+          cargo install -f --version 0.2.100 wasm-bindgen-cli
+
+
+      - name: Run wasm
+        run: |
+          cd dynmap
+          npm run wasm
+
+
+      - name: Build Dynmap
+        run: |
+          cd dynmap
+          npm run build
+
+
+  BuildPorts:
+    runs-on: ubuntu-lastest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+
+      - name: Change Permission
+        run: |
+          sudo chmod -R 777 /home/runner
+
+        
+      - name: build ports
+        run: |
+          cd ports
+          ./gradlew build
