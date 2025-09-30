@@ -31,11 +31,11 @@ jobs:
 
 
       - name: Upload Releases
-        uses: actions/upload-release-asset@v1
+        uses: softprops/action-gh-release@v1
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./nodes/build/libs/nodes-1.21.1.jar
-          asset_name: nodes-1.21.1.jar
+          文件:  ./nodes/build/libs/nodes-*.jar
+          draft: true
+          fail_on_unmatched_files: true
           
   BuildDynmap:
     runs-on: ubuntu-latest
@@ -86,11 +86,11 @@ jobs:
 
 
       - name: Upload Releases
-        uses: actions/upload-release-asset@v1
+        uses: softprops/action-gh-release@v1
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./Dynmap.zip
-          asset_name: Dynmap.zip
+          文件:  ./Dynmap.zip
+          draft: true
+          fail_on_unmatched_files: true
 
 
   BuildPorts:
@@ -120,8 +120,8 @@ jobs:
 
 
       - name: Upload Releases
-        uses: actions/upload-release-asset@v1
+        uses: softprops/action-gh-release@v1
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./ports/build/libs/nodes-ports-*.jar
-          asset_name: nodes-ports-1.21.1.jar
+          文件:  ./ports/build/libs/nodes-ports-*.jar
+          draft: true
+          fail_on_unmatched_files: true
