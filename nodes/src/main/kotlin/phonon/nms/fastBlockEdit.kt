@@ -82,7 +82,7 @@ public class FastBlockEditSession(
         //modify blocks
         val chunks: HashSet<NMSChunk> = hashSetOf()
         for ( (bPos, bState) in modified ) {
-            val chunk = world.getChunkSource().getChunk(bPos.getX() shr 4, bPos.getZ() shr 4, true)
+            val chunk = world.getChunkSource().getChunk(bPos.getX() shr 4, bPos.getZ() shr 4, 1)
             if ( chunk !== null ) {
                 chunks.add(chunk)
                 chunk.setBlockState(bPos, bState, 0)
