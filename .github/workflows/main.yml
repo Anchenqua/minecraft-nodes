@@ -33,7 +33,7 @@ jobs:
       - name: Upload Releases
         uses: softprops/action-gh-release@v1
         with:
-          文件:  ./nodes/build/libs/nodes-*.jar
+          files:  ./nodes/build/libs/nodes-*.jar
           draft: true
           fail_on_unmatched_files: true
           
@@ -88,7 +88,7 @@ jobs:
       - name: Upload Releases
         uses: softprops/action-gh-release@v1
         with:
-          文件:  ./Dynmap.zip
+          files:  ./Dynmap.zip
           draft: true
           fail_on_unmatched_files: true
 
@@ -122,6 +122,6 @@ jobs:
       - name: Upload Releases
         uses: softprops/action-gh-release@v1
         with:
-          文件:  ./ports/build/libs/nodes-ports-*.jar
+          files:  ./ports/build/libs/nodes-ports-*.jar
           draft: true
           fail_on_unmatched_files: true
